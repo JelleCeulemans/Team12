@@ -1,0 +1,80 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+// +----------------------------------------------------------
+// | notation_helper
+// | xxx - notation_helper
+// +----------------------------------------------------------
+// | 2 ITF - 2018-2019
+// +----------------------------------------------------------
+// | Notation Helper
+// +----------------------------------------------------------
+// | M. Decabooter, J. Janssen
+// +----------------------------------------------------------
+
+// databasedatum in juiste formaat zetten (van yyyy-mm-dd naar dd/mm/jjjj)
+
+    function zetOmNaarDDMMYYYY($input)
+    {
+        if ($input == "") {
+            return "";
+        } else {
+            $datum = explode("-", $input);
+            return $datum[2] . "/" . $datum[1] . "/" . $datum[0];
+        }
+    }
+
+// ingegeven datum in formaat van database plaatsen (van dd/mm/jjjj naar yyyy-mm-dd)
+
+    function zetOmNaarYYYYMMDD($input)
+    {
+        if ($input == "") {
+            return "";
+        } else {
+            $datum = explode("/", $input);
+            return $datum[2] . "-" . $datum[1] . "-" . $datum[0];
+        }
+    }
+
+// database decimaal getal tonen met komma (van 999.99 naar 999,99)
+
+    function zetOmNaarKomma($input)
+    {
+        if ($input == "") {
+            return "";
+        } else {
+            $getal = explode(".", $input);
+            if (count($getal) == 2) {
+                return $getal[0] . ',' . $getal[1];
+            } else {
+                return $getal[0];
+            }
+        }
+    }
+
+// ingegeven decimaal getal omzetten in databaseformaat (van 999,99 naar 999.99)
+
+    function zetOmNaarPunt($input)
+    {
+        if ($input == "") {
+            return "";
+        } else {
+            $getal = explode(",", $input);
+            if (count($getal) == 2) {
+                return $getal[0] . '.' . $getal[1];
+            } else {
+                return $getal[0];
+            }
+        }
+    }
+
+// ingegeven datum omzetten in databaseformaat
+
+    function zetOmNaarDateTimeLocalValue($datetime)
+    {
+        if ($datetime == "") {
+            return "";
+        } else {
+            $datetimelocal = explode(" ", $datetime);
+            return $datetimelocal[0] . "T" . $datetimelocal[1];
+        }
+}
